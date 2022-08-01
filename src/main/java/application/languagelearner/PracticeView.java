@@ -8,22 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import java.util.Locale;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class PracticeView {
 
     private Dictionary dictionary;
-    private String word;
 
     public PracticeView(Dictionary dictionary) {
         this.dictionary = dictionary;
-        this.word = dictionary.getRandomWord();
     }
 
     public Parent getView() {
+        AtomicReference<String> word = new AtomicReference<>(dictionary.getRandomWord());
         GridPane layout = new GridPane();
-
-        Label wordInstruction = new Label("Translate the word '" + this.word + "'");
+        Label wordInstruction = new Label("Translate the word '" + word + "'");
         TextField translationField = new TextField();
 
         layout.setAlignment(Pos.CENTER);
@@ -42,16 +40,16 @@ public class PracticeView {
         layout.add(feedback, 0, 3);
 
         addButton.setOnMouseClicked((event) -> {
-            String translation = translationField.getText();
-            if (dictionary.get(word).equals(translation)) {
-                feedback.setText("Correct!");
+            String translation = translationField.getText().toLowerCase();
+            if (dictionary.get(word.get()).equals(translation)) {
+                feedback.setText("Correct! The translation for " + word + " was " + dictionary.get(word.get()) + ".");
             } else {
-                feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + dictionary.get(word) + "'.");
+                feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + dictionary.get(word.get()) + "'.");
                 return;
             }
 
-            this.word = this.dictionary.getRandomWord();
-            wordInstruction.setText("Translate the word '" + this.word + "'");
+            word.set(this.dictionary.getRandomWord());
+            wordInstruction.setText("Translate the word '" + word + "'");
             translationField.clear();
         });
 

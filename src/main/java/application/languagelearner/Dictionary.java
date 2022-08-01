@@ -12,6 +12,10 @@ public class Dictionary {
         this.translations = new HashMap<String, String>();
     }
 
+    public boolean containsWords() {
+        return this.words.size() > 1;
+    }
+
     public String get(String word) {
             return this.translations.get(word);
     }
@@ -19,17 +23,12 @@ public class Dictionary {
     public void add(String word, String translation) {
         if (!translations.containsKey(word)) {
             this.words.add(word);
-            System.out.println("Adding " + word);
         }
         this.translations.put(word, translation);
     }
 
     public String getRandomWord() {
-        Random random = new Random();
-        if (this.words.size() > 0) {
+            Random random = new Random();
             return this.words.get(random.nextInt(this.words.size()));
-        } else {
-            return "";
-        }
     }
 }
