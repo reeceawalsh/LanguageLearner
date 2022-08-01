@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="LanguageLearner" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="application.languagelearner.LanguageLearner" />
+    <module name="LanguageLearner" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
