@@ -61,6 +61,7 @@ public class InputView {
             }
 
             translationField.clear();
+            wordField.isFocused();
         });
 
         return layout;
