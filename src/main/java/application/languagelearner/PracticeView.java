@@ -45,7 +45,6 @@ public class PracticeView {
                 feedback.setText("Correct! The translation for " + word + " was " + dictionary.get(word.get()) + ".");
             } else {
                 feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + dictionary.get(word.get()) + "'.");
-                return;
             }
 
             word.set(this.dictionary.getRandomWord());
