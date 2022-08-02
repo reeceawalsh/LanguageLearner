@@ -13,13 +13,11 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class PracticeView {
-
-    private List<String> words;
     private Dictionary currentDictionary;
-    private int score;
-    public PracticeView(Dictionary dictionary) {
+    private ScoringSystem scoringSystem;
+    public PracticeView(Dictionary dictionary, ScoringSystem scoringSystem) {
         this.currentDictionary = dictionary;
-        this.score = 0;
+        this.scoringSystem = scoringSystem;
     }
 
     public Parent getView() {
@@ -29,7 +27,7 @@ public class PracticeView {
         Label wordInstruction = new Label("Translate '" + word + "'");
         TextField translationField = new TextField();
         Label feedback = new Label("");
-        Label score = new Label("Your score is " + this.score);
+        Label score = new Label("Your score is " + scoringSystem.getScore());
 
         // Check button
         Button checkButton = new Button("Check");
@@ -54,24 +52,24 @@ public class PracticeView {
 
         // Check button event
         checkButton.setOnAction((event) -> {
+            currentDictionary.print();
             if (!this.finishedGame()) {
             String translation = translationField.getText().toLowerCase();
             String currentWord = String.valueOf(word);
-            int currentScore = this.score;
                 if (currentDictionary.get(currentWord).toLowerCase().equals(translation)) {
                     feedback.setText("Correct! The translation for " + word + " was " + currentDictionary.get(word.get()) + ".");
                     currentDictionary.remove(currentWord);
-                    currentScore ++;
-                    score.setText("Your score is " + currentScore );
+                    scoringSystem.increaseScore();
+                    score.setText("Your score is " + scoringSystem.getScore());
                 } else {
                     feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + currentDictionary.get(word.get()) + "'.");
                     int amountToAdd = 2;
                         for (int i = 0; i < amountToAdd; i++){
                             currentDictionary.add(currentWord, currentDictionary.get(currentWord));
                         }
-                        if (currentScore > 0) {
-                            currentScore --;
-                            score.setText("Your score is " + currentScore);
+                        if (scoringSystem.getScore() > 0) {
+                            scoringSystem.decreaseScore();
+                            score.setText("Your score is " + scoringSystem.getScore());
                         }
                     }
                 if (!finishedGame()) {
@@ -83,7 +81,6 @@ public class PracticeView {
 
                 translationField.clear();
                 translationField.requestFocus();
-                this.score = currentScore;
         }});
 
         return layout;
@@ -91,10 +88,6 @@ public class PracticeView {
 
     public Boolean finishedGame() {
         return (!this.currentDictionary.containsWords());
-    }
-
-    public int score() {
-        return this.score;
     }
 
 }

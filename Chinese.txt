@@ -4,3 +4,4 @@ Three, San
 Four, Si
 Five, Wu
 Six, Liu
+bag, bao

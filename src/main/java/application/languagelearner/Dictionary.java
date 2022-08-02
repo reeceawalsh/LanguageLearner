@@ -100,4 +100,14 @@ public class Dictionary {
         read();
     }
 
+    public void print() {
+        for (String key : this.translations.keySet()) {
+            System.out.println("Key " + key);
+            System.out.println("Value " + this.translations.get(key));
+        }
+        for (String word : this.words) {
+            System.out.println("Word  " + word);
+        }
+    }
+
 }

@@ -19,10 +19,12 @@ public class LanguageLearner extends Application {
 
     private Dictionary dictionary;
     private String language;
+    private ScoringSystem scoringSystem;
     @Override
     public void init() throws Exception {
         // 1. Create the dictionary that the application uses
         this.dictionary = new Dictionary();
+        this.scoringSystem = new ScoringSystem();
         this.dictionary.read();
     }
 
@@ -30,7 +32,7 @@ public class LanguageLearner extends Application {
     public void start(Stage stage) throws Exception {
         // Create the views ("subviews")
         InputView inputView = new InputView(dictionary);
-        PracticeView practiceView = new PracticeView(dictionary);
+        PracticeView practiceView = new PracticeView(dictionary, scoringSystem);
         ScoreView scoreView = new ScoreView(dictionary);
 
         // Create the higher level layout
@@ -73,7 +75,9 @@ public class LanguageLearner extends Application {
             } else {
                 frenchButton.setStyle(null);
             }
+            scoringSystem.clearScore();
             layout.setCenter(inputView.getView());
+            practiceButton.setText("Practice");
         });
         // German
         germanButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -89,7 +93,9 @@ public class LanguageLearner extends Application {
             } else {
                 germanButton.setStyle(null);
             }
+            scoringSystem.clearScore();
             layout.setCenter(inputView.getView());
+            practiceButton.setText("Practice");
         });
         // Chinese
         chineseButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -105,7 +111,9 @@ public class LanguageLearner extends Application {
             } else {
                 chineseButton.setStyle(null);
             }
+            scoringSystem.clearScore();
             layout.setCenter(inputView.getView());
+            practiceButton.setText("Practice");
         });
 
         // Add error message
@@ -118,7 +126,12 @@ public class LanguageLearner extends Application {
         layout.setBottom(languageMenu);
 
         // Connect the subviews with the buttons. Clicking menu buttons changes the subview.
-        enterButton.setOnAction((event) -> layout.setCenter(inputView.getView()));
+        enterButton.setOnAction((event) -> {
+                    layout.setCenter(inputView.getView());
+                    practiceButton.setText("Practice");
+                    scoringSystem.clearScore();
+                });
+
         practiceButton.setOnAction((event) -> {
             if (dictionary.containsWords()) {
                 layout.setCenter(practiceView.getView());
@@ -126,6 +139,8 @@ public class LanguageLearner extends Application {
             } else {
                 errorMessage.setText("You need to input words to practice.");
             }
+            scoringSystem.clearScore();
+            practiceButton.setText("Retry");
         });
 
         // First show the input view

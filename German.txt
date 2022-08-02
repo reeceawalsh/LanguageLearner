@@ -1,9 +1,11 @@
 One, Eins
 Two, Zwei
-Drei, Vier
+Three, drei
+Four, vier
 Five, Funf
 Six, Sechs
 Seven, Sieben
 Eight, Acht
 Nine, Neun
 Ten, Zehn
+bag, tasche
