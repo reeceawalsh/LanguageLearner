@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.layout.GridPane;
 
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class PracticeView {
@@ -27,7 +28,7 @@ public class PracticeView {
         // Initialize elements
         AtomicReference<String> word = new AtomicReference<>(currentDictionary.getRandomWord());
         GridPane layout = new GridPane();
-        Label wordInstruction = new Label("Translate the word '" + word + "'");
+        Label wordInstruction = new Label("The translation for '" + word + "' is?");
         TextField translationField = new TextField();
         Label feedback = new Label("");
         Label score = new Label("Your score is " + this.score);
@@ -54,19 +55,21 @@ public class PracticeView {
         checkButton.setOnAction((event) -> {
             String translation = translationField.getText().toLowerCase();
             String currentWord = String.valueOf(word);
-            if (dictionary.get(word.get()).equals(translation)) {
-                feedback.setText("Correct! The translation for " + word + " was " + dictionary.get(word.get()) + ".");
+            if (currentDictionary.get(word.get()).equals(translation)) {
+                feedback.setText("Correct! The translation for " + word + " was " + currentDictionary.get(word.get()) + ".");
                 currentDictionary.remove(currentWord);
-                score.setText("Your score is" + (this.score + 1);
+                score.setText("Your score is " + (this.score + 1));
             } else {
-                feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + dictionary.get(word.get()) + "'.");
+                feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + currentDictionary.get(word.get()) + "'.");
                 int amountToAdd = 2;
                 for (int i = 0; i < amountToAdd; i++){
                     currentDictionary.add(currentWord, translation);
-                    score.setText("Your score is" + (this.score - 1));
+                }
+                if (this.score > 0) {
+                    score.setText("Your score is " + (this.score - 1));
                 }
             }
-            word.set(this.dictionary.getRandomWord());
+            word.set(this.currentDictionary.getRandomWord());
             wordInstruction.setText("Translate the word '" + word + "'");
             translationField.clear();
         });

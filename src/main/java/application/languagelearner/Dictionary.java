@@ -21,7 +21,7 @@ public class Dictionary {
     }
 
     public String get(String word) {
-            return this.translations.get(word);
+            return this.translations.get(word).toLowerCase();
     }
 
     public void add(String word, String translation) {

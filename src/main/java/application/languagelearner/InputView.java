@@ -20,7 +20,7 @@ public class InputView {
     public Parent getView() {
         GridPane layout = new GridPane();
 
-        Label wordInstruction = new Label("Word");
+        Label wordInstruction = new Label("Word or Phrase");
         TextField wordField = new TextField();
         Label translationInstruction = new Label("Translation");
         TextField translationField = new TextField();
