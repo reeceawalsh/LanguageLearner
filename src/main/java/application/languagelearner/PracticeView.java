@@ -55,7 +55,7 @@ public class PracticeView {
         checkButton.setOnAction((event) -> {
             String translation = translationField.getText().toLowerCase();
             String currentWord = String.valueOf(word);
-            if (currentDictionary.get(word.get()).equals(translation)) {
+            if (currentDictionary.get(currentWord).toLowerCase().equals(translation)) {
                 feedback.setText("Correct! The translation for " + word + " was " + currentDictionary.get(word.get()) + ".");
                 currentDictionary.remove(currentWord);
                 score.setText("Your score is " + (this.score + 1));
@@ -72,6 +72,7 @@ public class PracticeView {
             word.set(this.currentDictionary.getRandomWord());
             wordInstruction.setText("Translate the word '" + word + "'");
             translationField.clear();
+            translationField.requestFocus();
         });
 
         // Checks for end of game
