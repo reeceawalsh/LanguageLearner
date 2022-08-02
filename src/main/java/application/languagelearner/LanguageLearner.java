@@ -9,13 +9,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 
 public class LanguageLearner extends Application {
 
     private Dictionary dictionary;
-    private String language;
     private ScoringSystem scoringSystem;
     @Override
     public void init() throws Exception {
@@ -26,37 +24,37 @@ public class LanguageLearner extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Create the views ("subviews")
+        // Create the views ("subviews").
         InputView inputView = new InputView(dictionary);
         PracticeView practiceView = new PracticeView(dictionary, scoringSystem);
         ScoreView scoreView = new ScoreView(dictionary);
 
-        // Create the higher level layout
+        // Create the higher level layout.
         BorderPane layout = new BorderPane();
 
-        // Create the menu for the general layout
+        // Create the menu for the general layout.
         HBox menu = new HBox();
         menu.setPadding(new Insets(20, 20, 20, 20));
         menu.setSpacing(10);
 
-        // Create the menu buttons
+        // Create the menu buttons.
         Button enterButton = new Button("Enter new words");
         Button practiceButton = new Button("Practice");
 
-        // Menu for buttons
+        // Menu for buttons.
         HBox languageMenu = new HBox();
         languageMenu.setPadding(new Insets(20, 20, 20, 20));
         languageMenu.setSpacing(20);
 
-        // Language buttons
+        // Language buttons.
         ToggleGroup languages = new ToggleGroup();
         ToggleButton frenchButton = new ToggleButton("French");
         ToggleButton germanButton = new ToggleButton("German");
         ToggleButton chineseButton = new ToggleButton("Chinese");
         languages.getToggles().addAll(frenchButton, germanButton, chineseButton);
 
-        // Toggle language buttons
-        // French
+        // Toggle language buttons.
+        // French.
         frenchButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 dictionary.toFrench();
@@ -74,7 +72,7 @@ public class LanguageLearner extends Application {
             layout.setCenter(inputView.getView());
             practiceButton.setText("Practice");
         });
-        // German
+        // German.
         germanButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 dictionary.toGerman();
@@ -92,7 +90,7 @@ public class LanguageLearner extends Application {
             layout.setCenter(inputView.getView());
             practiceButton.setText("Practice");
         });
-        // Chinese
+        // Chinese.
         chineseButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 dictionary.toChinese();
@@ -111,10 +109,10 @@ public class LanguageLearner extends Application {
             practiceButton.setText("Practice");
         });
 
-        // Add error message
+        // Add error message.
         Label errorMessage = new Label();
 
-        // Add the buttons to the menu
+        // Add the buttons to the menu.
         menu.getChildren().addAll(enterButton, practiceButton, errorMessage);
         layout.setTop(menu);
         languageMenu.getChildren().addAll(frenchButton, germanButton, chineseButton);
@@ -127,13 +125,16 @@ public class LanguageLearner extends Application {
                     scoringSystem.clearScore();
                 });
 
+        // Practice button event.
         practiceButton.setOnAction((event) -> {
             try {
+                // New dictionary, words and score.
                 dictionary.read();
                 scoringSystem.clearScore();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
+            // If there are words to practice then continue to practice view, if not then show error message.
             if (dictionary.containsWords()) {
                 layout.setCenter(practiceView.getView());
                 errorMessage.setText("");
@@ -143,13 +144,13 @@ public class LanguageLearner extends Application {
             }
         });
 
-        // First show the input view
+        // First show the input view.
         layout.setCenter(inputView.getView());
 
-        // Create the main view and add the high level layout
+        // Create the main view and add the high level layout.
         Scene view = new Scene(layout, 500, 400);
 
-        // Show the application
+        // Show the application.
         stage.setScene(view);
         stage.show();
     }

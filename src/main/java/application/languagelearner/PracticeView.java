@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.layout.GridPane;
-
-import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class PracticeView {
@@ -23,22 +21,22 @@ public class PracticeView {
     public Parent getView() {
         // Word is an atomic reference which allows it to keep changing without synchronization.
         AtomicReference<String> word = new AtomicReference<>(currentDictionary.getRandomWord());
-        // Initialize elements
+        // Initialize elements.
         GridPane layout = new GridPane();
         Label wordInstruction = new Label("Translate '" + word + "'");
         TextField translationField = new TextField();
         Label feedback = new Label("");
         Label score = new Label("Your score is " + scoringSystem.getScore());
 
-        // Check button
+        // Check button.
         Button checkButton = new Button("Check");
-        // This consume mouse events ( false ) just makes it so I can set the checkbutton to default and use enter to trigger it's event.
+        // This consumesMouseEvents(false) allows it so that I can set the checkButton to default and use enter to trigger it's event.
         checkButton.setSkin(new ButtonSkin(checkButton) {
             {this.consumeMouseEvents(false);}
         });
         checkButton.setDefaultButton(true);
 
-        // Layout of elements
+        // Layout of elements.
         layout.setAlignment(Pos.CENTER);
         layout.setVgap(10);
         layout.setHgap(10);
@@ -50,7 +48,7 @@ public class PracticeView {
         layout.add(feedback, 0, 3);
         layout.add(score, 0, 6);
 
-        // Check button event
+        // Check button event.
         checkButton.setOnAction((event) -> {
             this.currentDictionary.print();
             // Check to see if there's still words left, if not the game is over.
@@ -82,7 +80,7 @@ public class PracticeView {
                             score.setText("Your score is " + scoringSystem.getScore());
                         }
                     }
-                // Doesn't make sense that this code is here but the game doesn't finish correctly otherwise.
+                // Doesn't make sense that this code is here but the game doesn't finish correctly otherwise, it can probably be moved further up.
                 if (!finishedGame()) {
                     word.set(this.currentDictionary.getRandomWord());
                     wordInstruction.setText("Translate '" + word + "'");
@@ -90,7 +88,7 @@ public class PracticeView {
                     wordInstruction.setText("Congratulations, you've finished all of the words.");
                 }
                 translationField.clear();
-                // Request focus makes the textfield active so you can type in it.
+                // Request focus makes the textField active then the user can type in it.
                 translationField.requestFocus();
         }});
 
