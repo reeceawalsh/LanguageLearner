@@ -37,6 +37,7 @@ public class Dictionary {
     }
 
     public void add(String word, String translation) {
+        System.out.println("Adding " + word + " and " + translation);
         if (!translations.containsKey(word)) {
             this.words.add(word);
         }

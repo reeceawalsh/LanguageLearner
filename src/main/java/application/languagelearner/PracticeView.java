@@ -67,7 +67,7 @@ public class PracticeView {
                     feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + currentDictionary.get(word.get()) + "'.");
                     int amountToAdd = 2;
                         for (int i = 0; i < amountToAdd; i++){
-                            currentDictionary.add(currentWord, translation);
+                            currentDictionary.add(currentWord, currentDictionary.get(currentWord));
                         }
                         if (currentScore > 0) {
                             currentScore --;
