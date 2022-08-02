@@ -51,10 +51,16 @@ public class PracticeView {
 
         checkButton.setOnAction((event) -> {
             String translation = translationField.getText().toLowerCase();
+            String currentWord = String.valueOf(word);
             if (dictionary.get(word.get()).equals(translation)) {
                 feedback.setText("Correct! The translation for " + word + " was " + dictionary.get(word.get()) + ".");
+                currentDictionary.remove(currentWord);
             } else {
                 feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + dictionary.get(word.get()) + "'.");
+                int amountToAdd = 2;
+                for (int i = 0; i < amountToAdd; i++){
+                    currentDictionary.add(currentWord, translation);
+                }
             }
 
             word.set(this.dictionary.getRandomWord());

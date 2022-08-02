@@ -27,7 +27,7 @@ public class Dictionary {
         this.translations.put(word, translation);
     }
 
-    public void remove(String word, String translation) {
+    public void remove(String word) {
         this.translations.remove(word);
         this.words.remove(word);
     }
