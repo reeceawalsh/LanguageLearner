@@ -8,6 +8,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.PrintWriter;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 public class LanguageLearner extends Application {
 
     private Dictionary dictionary;
@@ -15,26 +19,24 @@ public class LanguageLearner extends Application {
     public void init() throws Exception {
         // 1. Create the dictionary that the application uses
         this.dictionary = new Dictionary();
-        dictionary.add("Hi", "Salut");
-        dictionary.add("Thank you", "Merci");
-        dictionary.add("Bye", "Au revoir");
-        dictionary.add("Great", "Super");
-        dictionary.add("How are you?", "ca va");
-        dictionary.add("Good", "Bonne");
-        dictionary.add("Perfect", "Parfait");
-        dictionary.add("I am", "Je suis");
-        dictionary.add("School", "Ecole");
-        dictionary.add("Coding", "Codeage");
-        dictionary.add("Computer Science", "Informatique");
-        dictionary.add("Blue", "Bleu");
-        dictionary.add("Cat", "Chat");
-        dictionary.add("Black", "Noir");
-        dictionary.add("Dog", "Chien");
-        dictionary.add("Orange", "Orange");
-        dictionary.add("Potato", "Pomme de terre");
-        dictionary.add("Beach", "La Plage");
-        dictionary.add("Girl", "Fille");
-        dictionary.add("Seafood", "Fruit de mer");
+        String language = "French";
+
+        try {
+            Scanner reader = new Scanner(Paths.get(language + ".txt"));
+
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                if (line.isEmpty()) {
+                    continue;
+                }
+                String parts[] = line.split(",");
+                String word = parts[0].trim();
+                String translation = parts[1].trim();
+                this.dictionary.add(word, translation);
+            }
+        } catch (Exception e) {
+            System.out.println("Error message " + e.getMessage());
+        }
     }
 
     @Override

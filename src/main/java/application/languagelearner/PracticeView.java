@@ -51,6 +51,13 @@ public class PracticeView {
         layout.add(feedback, 0, 3);
         layout.add(score, 0, 6);
 
+        // Check for end of game
+        if (finishedGame()) {
+            wordInstruction.setText("Congratulations you've translated all of the words correctly!");
+        } else {
+            wordInstruction.setText("The translation for '" + word + "' is?");
+        }
+
         // Check button event
         checkButton.setOnAction((event) -> {
             String translation = translationField.getText().toLowerCase();
@@ -79,12 +86,7 @@ public class PracticeView {
             this.score = currentScore;
         });
 
-        // Checks for end of game
-        if (finishedGame()) {
-            wordInstruction.setText("Congratulations you've translated all of the words correctly!");
-        } else {
-            wordInstruction.setText("The translation for '" + word + "' is?");
-        }
+
 
         return layout;
     }
