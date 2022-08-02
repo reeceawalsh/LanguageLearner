@@ -33,7 +33,9 @@ public class Dictionary {
         }
 
         this.translations.put(word, translation);
-        this.translations.put(translation, word);
+        if (!word.equals(translation)) {
+            this.translations.put(translation, word);
+        }
     }
 
     public void remove(String word) {

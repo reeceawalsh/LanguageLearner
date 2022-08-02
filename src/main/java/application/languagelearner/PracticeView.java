@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.layout.GridPane;
-
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class PracticeView {
@@ -17,7 +15,6 @@ public class PracticeView {
     private Dictionary dictionary;
     private Dictionary currentDictionary;
     private int score;
-    private int topScore;
     public PracticeView(Dictionary dictionary) {
         this.dictionary = dictionary;
         this.currentDictionary = this.dictionary;
@@ -58,24 +55,28 @@ public class PracticeView {
         checkButton.setOnAction((event) -> {
             String translation = translationField.getText().toLowerCase();
             String currentWord = String.valueOf(word);
+            int currentScore = this.score;
             if (currentDictionary.get(currentWord).toLowerCase().equals(translation)) {
                 feedback.setText("Correct! The translation for " + word + " was " + currentDictionary.get(word.get()) + ".");
                 currentDictionary.remove(currentWord);
-                score.setText("Your score is " + (this.score + 1));
+                currentScore ++;
+                score.setText("Your score is " + currentScore );
             } else {
                 feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + currentDictionary.get(word.get()) + "'.");
                 int amountToAdd = 2;
                 for (int i = 0; i < amountToAdd; i++){
                     currentDictionary.add(currentWord, translation);
                 }
-                if (this.score > 0) {
-                    score.setText("Your score is " + (this.score - 1));
+                if (currentScore > 0) {
+                    currentScore --;
+                    score.setText("Your score is " + currentScore);
                 }
             }
             word.set(this.currentDictionary.getRandomWord());
             wordInstruction.setText("Translate the word '" + word + "'");
             translationField.clear();
             translationField.requestFocus();
+            this.score = currentScore;
         });
 
         // Checks for end of game
