@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.layout.GridPane;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -30,16 +31,23 @@ public class PracticeView {
         layout.setPadding(new Insets(10, 10, 10, 10));
         layout.setAlignment(Pos.CENTER);
 
-        Button addButton = new Button("Check");
+        Button checkButton = new Button("Check");
+        checkButton.setSkin(new ButtonSkin(checkButton) {
+            {
+                this.consumeMouseEvents(false);
+            }
+        });
+
+        checkButton.setDefaultButton(true);
 
         Label feedback = new Label("");
 
         layout.add(wordInstruction, 0, 0);
         layout.add(translationField, 0, 1);
-        layout.add(addButton, 0, 2);
+        layout.add(checkButton, 0, 2);
         layout.add(feedback, 0, 3);
 
-        addButton.setOnMouseClicked((event) -> {
+        checkButton.setOnAction((event) -> {
             String translation = translationField.getText().toLowerCase();
             if (dictionary.get(word.get()).equals(translation)) {
                 feedback.setText("Correct! The translation for " + word + " was " + dictionary.get(word.get()) + ".");
@@ -51,6 +59,7 @@ public class PracticeView {
             wordInstruction.setText("Translate the word '" + word + "'");
             translationField.clear();
         });
+
 
         return layout;
     }

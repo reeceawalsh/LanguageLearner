@@ -12,3 +12,4 @@
 9. An error message occurs when the user tries to open the practice view without inputting anything to the dictionary. It doesn't go away though when something is submitted to the dictionary because I'm not sure how to link the input view buttons with the language learner elements. 
 10. If the user inputs a phrase to the dictionary, it will still refer to it as a word which doesn't make sense. Need to change word to translation or remove it entirely where possible.  
 11. Might be interesting to allow users to input their language, then they input words they want to practice and we use an API call to retrieve the translations from the appropriate dictionary.
+12. When the button is pressed I want it to take the user back to the word textField instead of stay at the translate textField.

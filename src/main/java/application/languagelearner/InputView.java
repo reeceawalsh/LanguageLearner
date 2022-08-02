@@ -5,6 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.skin.ButtonSkin;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 
 public class InputView {
@@ -30,6 +32,14 @@ public class InputView {
         layout.setAlignment(Pos.CENTER);
 
         Button addButton = new Button("Add");
+        // Stops the button from consuming mouse events and allows it to become the default button.
+        addButton.setSkin(new ButtonSkin(addButton) {
+            {
+                this.consumeMouseEvents(false);
+            }
+        });
+        // The button can now be pressed with the enter key.
+        addButton.setDefaultButton(true);
 
         layout.add(wordInstruction, 0, 0);
         layout.add(wordField, 0, 1);
@@ -38,7 +48,7 @@ public class InputView {
         layout.add(addButton, 0, 4);
         layout.add(error, 0, 6);
 
-        addButton.setOnMouseClicked((event) -> {
+        addButton.setOnAction((event) -> {
             String word = wordField.getText();
             String translation = translationField.getText();
 
