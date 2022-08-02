@@ -8,16 +8,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.layout.GridPane;
+
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class PracticeView {
 
-    private Dictionary dictionary;
+    private List<String> words;
     private Dictionary currentDictionary;
     private int score;
     public PracticeView(Dictionary dictionary) {
-        this.dictionary = dictionary;
-        this.currentDictionary = this.dictionary;
+        this.currentDictionary = dictionary;
         this.score = 0;
     }
 
@@ -53,7 +54,6 @@ public class PracticeView {
 
         // Check button event
         checkButton.setOnAction((event) -> {
-            this.currentDictionary.print();
             if (!this.finishedGame()) {
             String translation = translationField.getText().toLowerCase();
             String currentWord = String.valueOf(word);

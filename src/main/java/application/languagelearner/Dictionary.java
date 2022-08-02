@@ -37,12 +37,8 @@ public class Dictionary {
     }
 
     public void add(String word, String translation) {
-        if (!translations.containsKey(word)) {
-            this.words.add(word);
-        }
-        if (!translations.containsKey(translation)) {
-            this.words.add(translation);
-        }
+        this.words.add(word);
+        this.words.add(translation);
         this.translations.put(word, translation);
         this.translations.put(translation, word);
     }
@@ -99,4 +95,5 @@ public class Dictionary {
             Random random = new Random();
             return this.words.get(random.nextInt(this.words.size()));
     }
+
 }
