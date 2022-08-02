@@ -15,60 +15,70 @@ public class PracticeView {
 
     private Dictionary dictionary;
     private Dictionary currentDictionary;
-
+    private int score;
+    private int topScore;
     public PracticeView(Dictionary dictionary) {
         this.dictionary = dictionary;
         this.currentDictionary = this.dictionary;
+        this.score = 0;
     }
 
     public Parent getView() {
+        // Initialize elements
         AtomicReference<String> word = new AtomicReference<>(currentDictionary.getRandomWord());
         GridPane layout = new GridPane();
         Label wordInstruction = new Label("Translate the word '" + word + "'");
         TextField translationField = new TextField();
-
-        layout.setAlignment(Pos.CENTER);
-        layout.setVgap(10);
-        layout.setHgap(10);
-        layout.setPadding(new Insets(10, 10, 10, 10));
-        layout.setAlignment(Pos.CENTER);
-
+        Label feedback = new Label("");
+        Label score = new Label("Your score is " + this.score);
+        // Check button
         Button checkButton = new Button("Check");
         checkButton.setSkin(new ButtonSkin(checkButton) {
             {
                 this.consumeMouseEvents(false);
             }
         });
-
         checkButton.setDefaultButton(true);
-
-        Label feedback = new Label("");
-
+        // Layout of elements
+        layout.setAlignment(Pos.CENTER);
+        layout.setVgap(10);
+        layout.setHgap(10);
+        layout.setPadding(new Insets(10, 10, 10, 10));
+        layout.setAlignment(Pos.CENTER);
         layout.add(wordInstruction, 0, 0);
         layout.add(translationField, 0, 1);
         layout.add(checkButton, 0, 2);
         layout.add(feedback, 0, 3);
-
+        layout.add(score, 0, 6);
+        // Check button event
         checkButton.setOnAction((event) -> {
             String translation = translationField.getText().toLowerCase();
             String currentWord = String.valueOf(word);
             if (dictionary.get(word.get()).equals(translation)) {
                 feedback.setText("Correct! The translation for " + word + " was " + dictionary.get(word.get()) + ".");
                 currentDictionary.remove(currentWord);
+                score.setText("Your score is" + (this.score + 1);
             } else {
                 feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + dictionary.get(word.get()) + "'.");
                 int amountToAdd = 2;
                 for (int i = 0; i < amountToAdd; i++){
                     currentDictionary.add(currentWord, translation);
+                    score.setText("Your score is" + (this.score - 1));
                 }
             }
-
             word.set(this.dictionary.getRandomWord());
             wordInstruction.setText("Translate the word '" + word + "'");
             translationField.clear();
         });
 
-
         return layout;
+    }
+
+    public Boolean finishedGame() {
+        return (!this.currentDictionary.containsWords());
+    }
+
+    public int score() {
+        return this.score;
     }
 }

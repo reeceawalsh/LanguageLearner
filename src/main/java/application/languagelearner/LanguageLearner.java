@@ -15,34 +15,55 @@ public class LanguageLearner extends Application {
     public void init() throws Exception {
         // 1. Create the dictionary that the application uses
         this.dictionary = new Dictionary();
+        dictionary.add("Hi", "Salut");
+        dictionary.add("Thank you", "Merci");
+        dictionary.add("Bye", "Au revoir");
+        dictionary.add("Great", "Super");
+        dictionary.add("How are you?", "ca va");
+        dictionary.add("Good", "Bonne");
+        dictionary.add("Perfect", "Parfait");
+        dictionary.add("I am", "Je suis");
+        dictionary.add("School", "Ecole");
+        dictionary.add("Coding", "Codeage");
+        dictionary.add("Computer Science", "Informatique");
+        dictionary.add("Blue", "Bleu");
+        dictionary.add("Cat", "Chat");
+        dictionary.add("Black", "Noir");
+        dictionary.add("Dog", "Chien");
+        dictionary.add("Orange", "Orange");
+        dictionary.add("Potato", "Pomme de terre");
+        dictionary.add("Beach", "La Plage");
+        dictionary.add("Girl", "Fille");
+        dictionary.add("Seafood", "Fruit de mer");
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         // 2. Create the views ("subviews")
-        PracticeView practiceView = new PracticeView(dictionary);
         InputView inputView = new InputView(dictionary);
+        PracticeView practiceView = new PracticeView(dictionary);
+        ScoreView scoreView = new ScoreView(dictionary);
 
-        // 3. Create the higher level layout
+        // Create the higher level layout
         BorderPane layout = new BorderPane();
 
-        // 3.1. Create the menu for the general layout
+        // Create the menu for the general layout
         HBox menu = new HBox();
         menu.setPadding(new Insets(20, 20, 20, 20));
         menu.setSpacing(10);
 
-        // 3.2. Create the menu buttons
+        // Create the menu buttons
         Button enterButton = new Button("Enter new words");
         Button practiceButton = new Button("Practice");
 
-        // 3.3. Add error message
+        // Add error message
         Label errorMessage = new Label();
 
-        // 3.4. Add the buttons to the menu
+        // Add the buttons to the menu
         menu.getChildren().addAll(enterButton, practiceButton, errorMessage);
         layout.setTop(menu);
 
-        // 4. Connect the subviews with the buttons. Clicking menu buttons changes the subview.
+        // Connect the subviews with the buttons. Clicking menu buttons changes the subview.
         enterButton.setOnAction((event) -> layout.setCenter(inputView.getView()));
         practiceButton.setOnAction((event) -> {
             if (dictionary.containsWords()) {
@@ -53,13 +74,13 @@ public class LanguageLearner extends Application {
             }
         });
 
-        // 5. First show the input view
+        // First show the input view
         layout.setCenter(inputView.getView());
 
-        // 6. Create the main view and add the high level layout
+        // Create the main view and add the high level layout
         Scene view = new Scene(layout, 500, 400);
 
-        // 7. Show the application
+        // Show the application
         stage.setScene(view);
         stage.show();
     }

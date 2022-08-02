@@ -16,6 +16,10 @@ public class Dictionary {
         return this.words.size() > 1;
     }
 
+    public int size() {
+        return this.translations.size();
+    }
+
     public String get(String word) {
             return this.translations.get(word);
     }
