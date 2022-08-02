@@ -16,3 +16,4 @@
 ~~10. In the future I want to create a UI to add and remove words but for now I'm going to implement reading and writing to different text files with an option to change which language to learn based on which text file.~~
 10. Set the practice button to say "Retry" when the user is on the practice view and then change back to practice when on the input view.
 ~~11. New bug - when an item is incorrect, it's being added to the dictionary but with a blank value or key. Probably due to it being contained already, need to fix this.~~ 
+11. Hashmaps cant have duplicate values so I cant add duplicate words and translations if the user gets the word wrong. A possible work around could be to use the hashmap as the dictionary and then keep an array of words which i can add duplicates to and then pull their translation from the dictionary. 

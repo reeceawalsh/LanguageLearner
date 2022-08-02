@@ -37,7 +37,6 @@ public class Dictionary {
     }
 
     public void add(String word, String translation) {
-        System.out.println("Adding " + word + " and " + translation);
         if (!translations.containsKey(word)) {
             this.words.add(word);
         }
@@ -45,11 +44,7 @@ public class Dictionary {
             this.words.add(translation);
         }
         this.translations.put(word, translation);
-        // Write to file has to be here so that it doesn't double write each word and translation.
-        // Adds the translation first and the word second. But this is not included in the txt file, just the useable dictionary.
-        if (!word.equals(translation)) {
-            this.translations.put(translation, word);
-        }
+        this.translations.put(translation, word);
     }
 
     public void write(String word, String translation) throws FileNotFoundException {
