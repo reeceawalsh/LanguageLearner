@@ -6,10 +6,11 @@
 ~~3. It may be interesting to have some sort of scoring system, due to adding extra words it would have to increase on correct answers but also decrease on incorrect answers, otherwise doing badly could mean you get a higher score as there will be more clones added to the dictionary.~~ 
 4. Create a database so that anything stored will stay there if possible. Also create a way of allowing the user to change items in the database, such as modifying or removing. Maybe with a tree table. 
 ~~5. Allow 'enter' to control the submit button if possible.~~ 
-6. Style the GUI better and add some colour. 
-7. Add sound when an answer is correct if possible. 
-8. The entire GridPane changes in practice view when the text is longer which looks bad, need to separate the elements so that only the label gets bigger and the rest of the elements stay the same size. 
-9. An error message occurs when the user tries to open the practice view without inputting anything to the dictionary. It doesn't go away though when something is submitted to the dictionary because I'm not sure how to link the input view buttons with the language learner elements. 
+5. Style the GUI better and add some colour. 
+6. Add sound when an answer is correct if possible. 
+7. The entire GridPane changes in practice view when the text is longer which looks bad, need to separate the elements so that only the label gets bigger and the rest of the elements stay the same size. 
+8. An error message occurs when the user tries to open the practice view without inputting anything to the dictionary. It doesn't go away though when something is submitted to the dictionary because I'm not sure how to link the input view buttons with the language learner elements. 
 ~~10. If the user inputs a phrase to the dictionary, it will still refer to it as a word which doesn't make sense. Need to change word to translation or remove it entirely where possible.~~  
-11. Might be interesting to allow users to input their language, then they input words they want to practice and we use an API call to retrieve the translations from the appropriate dictionary.
-~~12. When the button is pressed I want it to take the user back to the word textField instead of stay at the translate textField. I can't find anything in the documentation but I've posted on StackOverFlow.~~ 
+9. Might be interesting to allow users to input their language, then they input words they want to practice and we use an API call to retrieve the translations from the appropriate dictionary.
+~~12. When the button is pressed I want it to take the user back to the word textField instead of stay at the translate textField. I can't find anything in the documentation but I've posted on StackOverFlow.~~
+10. In the future I want to create a UI to add and remove words but for now I'm going to implement reading and writing to different text files with an option to change which language to learn based on which text file.
