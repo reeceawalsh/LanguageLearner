@@ -44,7 +44,6 @@ public class Dictionary {
     }
 
     public void write(String word, String translation) throws FileNotFoundException {
-        System.out.println(this.file.getName());
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(this.file.getName(), true));
             writer.println(word + ", " + translation);
@@ -55,6 +54,7 @@ public class Dictionary {
     }
 
     public void read() throws FileNotFoundException {
+        // We need to clear both this.words and this.translations before we add words and translations from a file because they may contain words from a different language already.
         this.words = new ArrayList<String>();
         this.translations = new HashMap<String, String>();
         try {
@@ -99,6 +99,7 @@ public class Dictionary {
         read();
     }
 
+    // For testing purposes
     public void print() {
         for (String key : this.translations.keySet()) {
             System.out.println("Key " + key);
@@ -109,6 +110,7 @@ public class Dictionary {
         }
     }
 
+    // We never want to clear the dictionary unless the user is changing languages, but we may want to clear the words list sometimes.
     public void clear() {
         for (String word : this.words) {
             this.words.remove(word);

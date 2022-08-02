@@ -11,9 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.nio.file.Paths;
-import java.util.Scanner;
 
 public class LanguageLearner extends Application {
 
@@ -22,10 +19,9 @@ public class LanguageLearner extends Application {
     private ScoringSystem scoringSystem;
     @Override
     public void init() throws Exception {
-        // 1. Create the dictionary that the application uses
+        // Create the dictionary and scoring system that the application uses. Init gets initialized before start.
         this.dictionary = new Dictionary();
         this.scoringSystem = new ScoringSystem();
-        this.dictionary.read();
     }
 
     @Override
@@ -42,7 +38,6 @@ public class LanguageLearner extends Application {
         HBox menu = new HBox();
         menu.setPadding(new Insets(20, 20, 20, 20));
         menu.setSpacing(10);
-
 
         // Create the menu buttons
         Button enterButton = new Button("Enter new words");
@@ -134,7 +129,6 @@ public class LanguageLearner extends Application {
 
         practiceButton.setOnAction((event) -> {
             try {
-                dictionary.clear();
                 dictionary.read();
                 scoringSystem.clearScore();
             } catch (FileNotFoundException e) {
@@ -143,10 +137,10 @@ public class LanguageLearner extends Application {
             if (dictionary.containsWords()) {
                 layout.setCenter(practiceView.getView());
                 errorMessage.setText("");
+                practiceButton.setText("Retry");
             } else {
                 errorMessage.setText("You need to input words to practice.");
             }
-            practiceButton.setText("Retry");
         });
 
         // First show the input view

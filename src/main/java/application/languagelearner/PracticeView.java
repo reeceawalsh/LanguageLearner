@@ -21,8 +21,9 @@ public class PracticeView {
     }
 
     public Parent getView() {
-        // Initialize elements
+        // Word is an atomic reference which allows it to keep changing without synchronization.
         AtomicReference<String> word = new AtomicReference<>(currentDictionary.getRandomWord());
+        // Initialize elements
         GridPane layout = new GridPane();
         Label wordInstruction = new Label("Translate '" + word + "'");
         TextField translationField = new TextField();
@@ -31,10 +32,9 @@ public class PracticeView {
 
         // Check button
         Button checkButton = new Button("Check");
+        // This consume mouse events ( false ) just makes it so I can set the checkbutton to default and use enter to trigger it's event.
         checkButton.setSkin(new ButtonSkin(checkButton) {
-            {
-                this.consumeMouseEvents(false);
-            }
+            {this.consumeMouseEvents(false);}
         });
         checkButton.setDefaultButton(true);
 
@@ -52,34 +52,45 @@ public class PracticeView {
 
         // Check button event
         checkButton.setOnAction((event) -> {
-            currentDictionary.print();
+            this.currentDictionary.print();
+            // Check to see if there's still words left, if not the game is over.
             if (!this.finishedGame()) {
-            String translation = translationField.getText().toLowerCase();
-            String currentWord = String.valueOf(word);
+                // Set the translation to lowerCase, ready to be checked against the dictionary word which will be lowercase also.
+                String translation = translationField.getText().toLowerCase();
+                // Word is an atomic reference so it updates automatically. Here it's converted to a string to be used in the following code.
+                String currentWord = String.valueOf(word);
+                // Check if the word matches the dictionary translation.
                 if (currentDictionary.get(currentWord).toLowerCase().equals(translation)) {
-                    feedback.setText("Correct! The translation for " + word + " was " + currentDictionary.get(word.get()) + ".");
+                    feedback.setText("Correct! The translation for '" + word + "' was '" + currentDictionary.get(word.get()) + "'.");
+                    // Remove the current word from the list because it doesn't need further practice.
                     currentDictionary.remove(currentWord);
+                    // Increment the score and change the text to indicate the change.
                     scoringSystem.increaseScore();
                     score.setText("Your score is " + scoringSystem.getScore());
                 } else {
+                    // If it's not a match then we need to show the correct word and inform the user.
                     feedback.setText("Incorrect! The translation for the word '" + word + "' is '" + currentDictionary.get(word.get()) + "'.");
+                    // This is an integer in case I add settings down the line, some may want to add the word more than twice.
                     int amountToAdd = 2;
+                        // This for loop just adds the word back to the list then it can be practiced more.
                         for (int i = 0; i < amountToAdd; i++){
                             currentDictionary.add(currentWord, currentDictionary.get(currentWord));
                         }
+                        // I don't want the score to be less than 0, so it only decrements to 0.
                         if (scoringSystem.getScore() > 0) {
                             scoringSystem.decreaseScore();
                             score.setText("Your score is " + scoringSystem.getScore());
                         }
                     }
+                // Doesn't make sense that this code is here but the game doesn't finish correctly otherwise.
                 if (!finishedGame()) {
                     word.set(this.currentDictionary.getRandomWord());
                     wordInstruction.setText("Translate '" + word + "'");
                 } else {
                     wordInstruction.setText("Congratulations, you've finished all of the words.");
                 }
-
                 translationField.clear();
+                // Request focus makes the textfield active so you can type in it.
                 translationField.requestFocus();
         }});
 

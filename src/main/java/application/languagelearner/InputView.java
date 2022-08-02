@@ -20,7 +20,8 @@ public class InputView {
     }
 
     public Parent getView() {
-        // Initialize elements
+
+        // Initialize elements.
         GridPane layout = new GridPane();
         Label wordInstruction = new Label("Word or Phrase");
         TextField wordField = new TextField();
@@ -30,7 +31,8 @@ public class InputView {
 
         // Add word button
         Button addButton = new Button("Add");
-        // Stops the button from consuming mouse events and allows it to become the default button.
+
+        // Stops the button from consuming mouse events and allows it to become the default button that can be activated with enter.
         addButton.setSkin(new ButtonSkin(addButton) {
             {
                 this.consumeMouseEvents(false);
@@ -38,7 +40,7 @@ public class InputView {
         });
         addButton.setDefaultButton(true);
 
-        // Layout of elements
+        // Layout of elements.
         layout.setVgap(10);
         layout.setHgap(10);
         layout.setPadding(new Insets(10, 10, 10, 10));
@@ -50,24 +52,27 @@ public class InputView {
         layout.add(addButton, 0, 4);
         layout.add(error, 0, 6);
 
-        // Button event
+        // Button event.
         addButton.setOnAction((event) -> {
             String word = wordField.getText();
             String translation = translationField.getText();
-
+            // Check to see if the field has text in it.
             if (!translationField.getText().isEmpty()) {
+                // Add it to the dictionary and word list.
                 this.dictionary.add(word, translation);
                 try {
+                    // Add it to the text file.
                     this.dictionary.write(word, translation);
                 } catch (Exception e) {
                     System.out.println("Error " + e.getMessage());
                 }
+                // Change the error message then it doesn't display anything and clear the text field to input again.
                 error.setText("");
                 wordField.clear();
             } else {
                 error.setText("Please input a translation.");
             }
-
+            // Clear the text field and make the word field active.
             translationField.clear();
             wordField.requestFocus();
         });
