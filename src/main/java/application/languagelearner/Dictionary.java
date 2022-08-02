@@ -27,6 +27,11 @@ public class Dictionary {
         this.translations.put(word, translation);
     }
 
+    public void remove(String word, String translation) {
+        this.translations.remove(word);
+        this.words.remove(word);
+    }
+
     public String getRandomWord() {
             Random random = new Random();
             return this.words.get(random.nextInt(this.words.size()));

@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 public class LanguageLearner extends Application {
 
     private Dictionary dictionary;
-
     @Override
     public void init() throws Exception {
         // 1. Create the dictionary that the application uses

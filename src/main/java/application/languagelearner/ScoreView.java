@@ -11,12 +11,12 @@ import javafx.scene.layout.GridPane;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public class PracticeView {
+public class ScoreView {
 
     private Dictionary dictionary;
     private Dictionary currentDictionary;
 
-    public PracticeView(Dictionary dictionary) {
+    public ScoreView(Dictionary dictionary) {
         this.dictionary = dictionary;
         this.currentDictionary = this.dictionary;
     }
