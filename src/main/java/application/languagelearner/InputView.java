@@ -53,7 +53,7 @@ public class InputView {
             String translation = translationField.getText();
 
             if (!translationField.getText().isEmpty()) {
-                this.dictionary.add(word.toLowerCase(), translation.toLowerCase());
+                this.dictionary.add(word, translation);
                 error.setText("");
                 wordField.clear();
             } else {
@@ -61,7 +61,7 @@ public class InputView {
             }
 
             translationField.clear();
-            wordField.isFocused();
+            wordField.requestFocus();
         });
 
         return layout;

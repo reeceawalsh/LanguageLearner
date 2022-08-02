@@ -28,7 +28,7 @@ public class PracticeView {
         // Initialize elements
         AtomicReference<String> word = new AtomicReference<>(currentDictionary.getRandomWord());
         GridPane layout = new GridPane();
-        Label wordInstruction = new Label("The translation for '" + word + "' is?");
+        Label wordInstruction = new Label();
         TextField translationField = new TextField();
         Label feedback = new Label("");
         Label score = new Label("Your score is " + this.score);
@@ -73,6 +73,13 @@ public class PracticeView {
             wordInstruction.setText("Translate the word '" + word + "'");
             translationField.clear();
         });
+
+        // Checks for end of game
+        if (finishedGame()) {
+            wordInstruction.setText("Congratulations you've translated all of the words correctly!");
+        } else {
+            wordInstruction.setText("The translation for '" + word + "' is?");
+        }
 
         return layout;
     }
