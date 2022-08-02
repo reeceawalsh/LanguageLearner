@@ -32,6 +32,7 @@ public class PracticeView {
         TextField translationField = new TextField();
         Label feedback = new Label("");
         Label score = new Label("Your score is " + this.score);
+
         // Check button
         Button checkButton = new Button("Check");
         checkButton.setSkin(new ButtonSkin(checkButton) {
@@ -40,6 +41,7 @@ public class PracticeView {
             }
         });
         checkButton.setDefaultButton(true);
+
         // Layout of elements
         layout.setAlignment(Pos.CENTER);
         layout.setVgap(10);
@@ -51,6 +53,7 @@ public class PracticeView {
         layout.add(checkButton, 0, 2);
         layout.add(feedback, 0, 3);
         layout.add(score, 0, 6);
+
         // Check button event
         checkButton.setOnAction((event) -> {
             String translation = translationField.getText().toLowerCase();

@@ -28,7 +28,12 @@ public class Dictionary {
         if (!translations.containsKey(word)) {
             this.words.add(word);
         }
+        if (!translations.containsKey(translation)) {
+            this.words.add(translation);
+        }
+
         this.translations.put(word, translation);
+        this.translations.put(translation, word);
     }
 
     public void remove(String word) {

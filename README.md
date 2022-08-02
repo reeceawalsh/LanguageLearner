@@ -1,7 +1,7 @@
 ### Future Features
 
-1. Allow the words to translate to also be in the foreign language. The solution to this is to use two arrays and two hashmaps and when a random word getter is called it randomly picks which word list and hashmap to choose from. To add to each it would be easy because I can just swap them around for the second hashmap.
- Another way would be to change a bit more of the code and allow it to get a value as the word to translate and the key as the answer. 
+~~1. Allow the words to translate to also be in the foreign language. The solution to this is to use two arrays and two hashmaps and when a random word getter is called it randomly picks which word list and hashmap to choose from. To add to each it would be easy because I can just swap them around for the second hashmap.~~
+ ~~Another way would be to change a bit more of the code and allow it to get a value as the word to translate and the key as the answer.~~ 
 ~~2. Whenever the user gets a word right it will not show the word again. If a user gets the word wrong it adds it to the list twice. Correct words don't need practicing while wrong words should be practiced numerous times. I will need to change the code which checks if the word is contained already and also and some code to remove words from the dictionary and the array list words.~~ 
 ~~3. It may be interesting to have some sort of scoring system, due to adding extra words it would have to increase on correct answers but also decrease on incorrect answers, otherwise doing badly could mean you get a higher score as there will be more clones added to the dictionary.~~ 
 4. Create a database so that anything stored will stay there if possible. Also create a way of allowing the user to change items in the database, such as modifying or removing. Maybe with a tree table. 

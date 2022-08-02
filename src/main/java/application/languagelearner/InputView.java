@@ -18,19 +18,15 @@ public class InputView {
     }
 
     public Parent getView() {
+        // Initialize elements
         GridPane layout = new GridPane();
-
         Label wordInstruction = new Label("Word or Phrase");
         TextField wordField = new TextField();
         Label translationInstruction = new Label("Translation");
         TextField translationField = new TextField();
         Label error = new Label();
 
-        layout.setVgap(10);
-        layout.setHgap(10);
-        layout.setPadding(new Insets(10, 10, 10, 10));
-        layout.setAlignment(Pos.CENTER);
-
+        // Add button
         Button addButton = new Button("Add");
         // Stops the button from consuming mouse events and allows it to become the default button.
         addButton.setSkin(new ButtonSkin(addButton) {
@@ -38,9 +34,13 @@ public class InputView {
                 this.consumeMouseEvents(false);
             }
         });
-        // The button can now be pressed with the enter key.
         addButton.setDefaultButton(true);
 
+        // Layout of elements
+        layout.setVgap(10);
+        layout.setHgap(10);
+        layout.setPadding(new Insets(10, 10, 10, 10));
+        layout.setAlignment(Pos.CENTER);
         layout.add(wordInstruction, 0, 0);
         layout.add(wordField, 0, 1);
         layout.add(translationInstruction, 0, 2);
@@ -48,6 +48,7 @@ public class InputView {
         layout.add(addButton, 0, 4);
         layout.add(error, 0, 6);
 
+        // Button event
         addButton.setOnAction((event) -> {
             String word = wordField.getText();
             String translation = translationField.getText();
