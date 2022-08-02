@@ -28,7 +28,7 @@ public class InputView {
         TextField translationField = new TextField();
         Label error = new Label();
 
-        // Add button
+        // Add word button
         Button addButton = new Button("Add");
         // Stops the button from consuming mouse events and allows it to become the default button.
         addButton.setSkin(new ButtonSkin(addButton) {

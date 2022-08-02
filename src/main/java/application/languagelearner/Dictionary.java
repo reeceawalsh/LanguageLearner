@@ -44,6 +44,7 @@ public class Dictionary {
     }
 
     public void write(String word, String translation) throws FileNotFoundException {
+        System.out.println(this.file.getName());
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(this.file.getName(), true));
             writer.println(word + ", " + translation);
@@ -54,6 +55,8 @@ public class Dictionary {
     }
 
     public void read() throws FileNotFoundException {
+        this.words = new ArrayList<String>();
+        this.translations = new HashMap<String, String>();
         try {
             Scanner reader = new Scanner(Paths.get(this.file.getName()));
 
@@ -77,23 +80,24 @@ public class Dictionary {
         this.words.remove(word);
     }
 
-    public void print() {
-        for (String key : this.translations.keySet()) {
-            System.out.println("key " + key);
-        }
-
-        for (String value : this.translations.values()) {
-            System.out.println("value " + value);
-        }
-
-        for (String word : this.words) {
-            System.out.println("word " + word);
-        }
-    }
-
     public String getRandomWord() {
             Random random = new Random();
             return this.words.get(random.nextInt(this.words.size()));
+    }
+
+    public void toFrench() throws FileNotFoundException {
+        this.file = new File("French.txt");
+        read();
+    }
+
+    public void toGerman() throws FileNotFoundException {
+        this.file = new File("German.txt");
+        read();
+    }
+
+    public void toChinese() throws FileNotFoundException {
+        this.file = new File("Chinese.txt");
+        read();
     }
 
 }

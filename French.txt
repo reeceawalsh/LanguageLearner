@@ -4,3 +4,8 @@ bonjour, hello
 salut, hi
 cat, chat
 chien, dog
+One, Une
+Two, deux
+three, trois
+four, quatre
+five, cinq

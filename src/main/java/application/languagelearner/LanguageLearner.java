@@ -4,10 +4,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -15,16 +18,17 @@ import java.util.Scanner;
 public class LanguageLearner extends Application {
 
     private Dictionary dictionary;
+    private String language;
     @Override
     public void init() throws Exception {
         // 1. Create the dictionary that the application uses
-        this.dictionary = new Dictionary("french.txt");
+        this.dictionary = new Dictionary();
         this.dictionary.read();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        // 2. Create the views ("subviews")
+        // Create the views ("subviews")
         InputView inputView = new InputView(dictionary);
         PracticeView practiceView = new PracticeView(dictionary);
         ScoreView scoreView = new ScoreView(dictionary);
@@ -37,9 +41,72 @@ public class LanguageLearner extends Application {
         menu.setPadding(new Insets(20, 20, 20, 20));
         menu.setSpacing(10);
 
+
         // Create the menu buttons
         Button enterButton = new Button("Enter new words");
         Button practiceButton = new Button("Practice");
+
+        // Menu for buttons
+        HBox languageMenu = new HBox();
+        languageMenu.setPadding(new Insets(20, 20, 20, 20));
+        languageMenu.setSpacing(20);
+
+        // Language buttons
+        ToggleGroup languages = new ToggleGroup();
+        ToggleButton frenchButton = new ToggleButton("French");
+        ToggleButton germanButton = new ToggleButton("German");
+        ToggleButton chineseButton = new ToggleButton("Chinese");
+        languages.getToggles().addAll(frenchButton, germanButton, chineseButton);
+
+        // Toggle language buttons
+        // French
+        frenchButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                dictionary.toFrench();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            if (newValue) {
+                frenchButton.setStyle(
+                        "-fx-background-color: green;" +
+                                "-fx-text-fill: white");
+            } else {
+                frenchButton.setStyle(null);
+            }
+            layout.setCenter(inputView.getView());
+        });
+        // German
+        germanButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                dictionary.toGerman();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            if (newValue) {
+                germanButton.setStyle(
+                        "-fx-background-color: green;" +
+                                "-fx-text-fill: white");
+            } else {
+                germanButton.setStyle(null);
+            }
+            layout.setCenter(inputView.getView());
+        });
+        // Chinese
+        chineseButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                dictionary.toChinese();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            if (newValue) {
+                chineseButton.setStyle(
+                        "-fx-background-color: green;" +
+                                "-fx-text-fill: white");
+            } else {
+                chineseButton.setStyle(null);
+            }
+            layout.setCenter(inputView.getView());
+        });
 
         // Add error message
         Label errorMessage = new Label();
@@ -47,6 +114,8 @@ public class LanguageLearner extends Application {
         // Add the buttons to the menu
         menu.getChildren().addAll(enterButton, practiceButton, errorMessage);
         layout.setTop(menu);
+        languageMenu.getChildren().addAll(frenchButton, germanButton, chineseButton);
+        layout.setBottom(languageMenu);
 
         // Connect the subviews with the buttons. Clicking menu buttons changes the subview.
         enterButton.setOnAction((event) -> layout.setCenter(inputView.getView()));

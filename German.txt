@@ -1,0 +1,9 @@
+One, Eins
+Two, Zwei
+Drei, Vier
+Five, Funf
+Six, Sechs
+Seven, Sieben
+Eight, Acht
+Nine, Neun
+Ten, Zehn

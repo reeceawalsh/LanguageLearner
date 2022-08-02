@@ -1,0 +1,6 @@
+One, Yi
+Two, Er
+Three, San
+Four, Si
+Five, Wu
+Six, Liu
