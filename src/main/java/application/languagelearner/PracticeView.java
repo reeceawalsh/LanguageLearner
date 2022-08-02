@@ -96,4 +96,5 @@ public class PracticeView {
     public int score() {
         return this.score;
     }
+
 }

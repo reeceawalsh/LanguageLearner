@@ -1,3 +1,6 @@
-Thank you, Merci
-You're welcome, De rien
-
+hi, salut
+hello, bonjour
+bonjour, hello
+salut, hi
+cat, chat
+chien, dog

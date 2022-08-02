@@ -18,25 +18,8 @@ public class LanguageLearner extends Application {
     @Override
     public void init() throws Exception {
         // 1. Create the dictionary that the application uses
-        this.dictionary = new Dictionary();
-        String language = "French";
-
-        try {
-            Scanner reader = new Scanner(Paths.get(language + ".txt"));
-
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                if (line.isEmpty()) {
-                    continue;
-                }
-                String parts[] = line.split(",");
-                String word = parts[0].trim();
-                String translation = parts[1].trim();
-                this.dictionary.add(word, translation);
-            }
-        } catch (Exception e) {
-            System.out.println("Error message " + e.getMessage());
-        }
+        this.dictionary = new Dictionary("french.txt");
+        this.dictionary.read();
     }
 
     @Override

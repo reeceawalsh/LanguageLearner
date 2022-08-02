@@ -9,6 +9,8 @@ import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 
+import java.io.PrintWriter;
+
 public class InputView {
 
     private Dictionary dictionary;
@@ -55,6 +57,11 @@ public class InputView {
 
             if (!translationField.getText().isEmpty()) {
                 this.dictionary.add(word, translation);
+                try {
+                    this.dictionary.write(word, translation);
+                } catch (Exception e) {
+                    System.out.println("Error " + e.getMessage());
+                }
                 error.setText("");
                 wordField.clear();
             } else {
@@ -67,4 +74,5 @@ public class InputView {
 
         return layout;
     }
+
 }

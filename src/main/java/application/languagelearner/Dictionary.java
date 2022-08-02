@@ -1,4 +1,9 @@
 package application.languagelearner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.util.*;
 
 
@@ -6,6 +11,13 @@ public class Dictionary {
 
     private List<String> words;
     private Map<String, String> translations;
+    private File file;
+
+    public Dictionary(String file) {
+        this.words = new ArrayList<String>();
+        this.translations = new HashMap<String, String>();
+        this.file = new File(file);
+    }
 
     public Dictionary() {
         this.words = new ArrayList<String>();
@@ -31,10 +43,40 @@ public class Dictionary {
         if (!translations.containsKey(translation)) {
             this.words.add(translation);
         }
-
         this.translations.put(word, translation);
+        // Write to file has to be here so that it doesn't double write each word and translation.
+        // Adds the translation first and the word second. But this is not included in the txt file, just the useable dictionary.
         if (!word.equals(translation)) {
             this.translations.put(translation, word);
+        }
+    }
+
+    public void write(String word, String translation) throws FileNotFoundException {
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(this.file.getName(), true));
+            writer.println(word + ", " + translation);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
+    }
+
+    public void read() throws FileNotFoundException {
+        try {
+            Scanner reader = new Scanner(Paths.get(this.file.getName()));
+
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                if (line.isEmpty()) {
+                    continue;
+                }
+                String parts[] = line.split(",");
+                String word = parts[0].trim();
+                String translation = parts[1].trim();
+                add(word, translation);
+            }
+        } catch (Exception e) {
+            System.out.println("Error message " + e.getMessage());
         }
     }
 
