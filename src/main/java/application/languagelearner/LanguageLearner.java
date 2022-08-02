@@ -133,13 +133,19 @@ public class LanguageLearner extends Application {
                 });
 
         practiceButton.setOnAction((event) -> {
+            try {
+                dictionary.clear();
+                dictionary.read();
+                scoringSystem.clearScore();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             if (dictionary.containsWords()) {
                 layout.setCenter(practiceView.getView());
                 errorMessage.setText("");
             } else {
                 errorMessage.setText("You need to input words to practice.");
             }
-            scoringSystem.clearScore();
             practiceButton.setText("Retry");
         });
 

@@ -76,7 +76,6 @@ public class Dictionary {
     }
 
     public void remove(String word) {
-        this.translations.remove(word);
         this.words.remove(word);
     }
 
@@ -107,6 +106,12 @@ public class Dictionary {
         }
         for (String word : this.words) {
             System.out.println("Word  " + word);
+        }
+    }
+
+    public void clear() {
+        for (String word : this.words) {
+            this.words.remove(word);
         }
     }
 

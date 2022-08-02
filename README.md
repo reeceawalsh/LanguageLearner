@@ -17,6 +17,7 @@
 10. Set the practice button to say "Retry" when the user is on the practice view and then change back to practice when on the input view.
 ~~11. New bug - when an item is incorrect, it's being added to the dictionary but with a blank value or key. Probably due to it being contained already, need to fix this.~~ 
 ~~11. Adding buttons to choose language. Choosing language will change which file is being used to read and write to.~~ 
-11. Score is not resetting when swapping between different views.
-12. Need to add words back to the array when pressing the retry button 
-13. Need to make sure not getting a word right adds it twice. 
+~~11. Score is not resetting when swapping between different views.~~
+~~12. Need to add words back to the array when pressing the retry button~~ 
+~~13. Need to make sure not getting a word right adds it twice.~~ 
+14. Need to set up automatic testing because manual testing is tedious
