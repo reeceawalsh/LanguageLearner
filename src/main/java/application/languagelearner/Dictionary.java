@@ -13,7 +13,7 @@ public class Dictionary {
     }
 
     public boolean containsWords() {
-        return this.words.size() > 1;
+        return this.words.size() > 0;
     }
 
     public int size() {
@@ -41,6 +41,20 @@ public class Dictionary {
     public void remove(String word) {
         this.translations.remove(word);
         this.words.remove(word);
+    }
+
+    public void print() {
+        for (String key : this.translations.keySet()) {
+            System.out.println("key " + key);
+        }
+
+        for (String value : this.translations.values()) {
+            System.out.println("value " + value);
+        }
+
+        for (String word : this.words) {
+            System.out.println("word " + word);
+        }
     }
 
     public String getRandomWord() {

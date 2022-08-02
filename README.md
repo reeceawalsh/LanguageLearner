@@ -14,3 +14,4 @@
 9. Might be interesting to allow users to input their language, then they input words they want to practice and we use an API call to retrieve the translations from the appropriate dictionary.
 ~~12. When the button is pressed I want it to take the user back to the word textField instead of stay at the translate textField. I can't find anything in the documentation but I've posted on StackOverFlow.~~
 10. In the future I want to create a UI to add and remove words but for now I'm going to implement reading and writing to different text files with an option to change which language to learn based on which text file.
+11. Set the practice button to say "Retry" when the user is on the practice view and then change back to practice when on the input view. 
