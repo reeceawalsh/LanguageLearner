@@ -5,7 +5,7 @@
 2. Whenever the user gets a word right it will not show the word again. If a user gets the word wrong it adds it to the list twice. Correct words don't need practicing while wrong words should be practiced numerous times. I will need to change the code which checks if the word is contained already and also and some code to remove words from the dictionary and the array list words. 
 3. It may be interesting to have some sort of scoring system, due to adding extra words it would have to increase on correct answers but also decrease on incorrect answers, otherwise doing badly could mean you get a higher score as there will be more clones added to the dictionary. 
 4. Create a database so that anything stored will stay there if possible. Also create a way of allowing the user to change items in the database, such as modifying or removing. Maybe with a tree table. 
-5. Allow 'enter' to control the submit button if possible. 
+~~5. Allow 'enter' to control the submit button if possible.~~ 
 6. Style the GUI better and add some colour. 
 7. Add sound when an answer is correct if possible. 
 8. The entire GridPane changes in practice view when the text is longer which looks bad, need to separate the elements so that only the label gets bigger and the rest of the elements stay the same size. 
