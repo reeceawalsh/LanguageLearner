@@ -22,5 +22,8 @@
 ~~13. Need to make sure not getting a word right adds it twice.~~ <br/>
 10. Need to set up automatic testing because manual testing is tedious <br/>
 11. Need to implement a way of not displaying words that have been translated correctly multiple times. This is half implemented but needs to implemented for the long term. The user shouldn't have to remove words, the application should pseudo remove them if they're too easy. <br/>
-11. There is a list of the most used words in a language, I like the idea of adding words gradually based on their popularity, starting in batches of 20 from 1-20 then 20-40 etc. Doing this with an api and dictionary would be very interesting and allow a lot of autonomy for the user.<br/>
-After spending a full day and a few hours last night on this project I'm happy with where it is at the moment. I do want to add some features and learn some more things about JavaFX but I also want to carry on with Java Mooc and get it finished first. For now the application works perfectly for my needs and I plan on using it each day. 
+12. Create a new hashmap with the word as key and an int count as the value. New words that are added to the dictionary will receive a value of 0. Whenever a word is correctly answered, the count will increase by 1. Whenever the game is played, the words that are populated from the dictionary into the playable list of words should be the words with the lowest value, i.e. the words that aren't known as well.
+
+
+There is a list of the most used words in a language, I like the idea of adding words gradually based on their popularity, starting in batches of 20 from 1-20 then 20-40 etc. Doing this with an api and dictionary would be very interesting and allow a lot of autonomy for the user.<br/>
+After spending a full day and a few hours last night on this project I'm happy with where it is at the moment. I do want to add some features and learn some more things about JavaFX but I also want to carry on with Java Mooc and get it finished first. For now the application works perfectly for my needs and I plan on using it each day. <br/>
