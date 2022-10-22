@@ -49,9 +49,9 @@ public class LanguageLearner extends Application {
         // Language buttons.
         ToggleGroup languages = new ToggleGroup();
         ToggleButton frenchButton = new ToggleButton("French");
-        ToggleButton germanButton = new ToggleButton("German");
-        ToggleButton chineseButton = new ToggleButton("Chinese");
-        languages.getToggles().addAll(frenchButton, germanButton, chineseButton);
+        ToggleButton moroccanButton = new ToggleButton("Moroccan");
+//        ToggleButton chineseButton = new ToggleButton("Chinese");
+        languages.getToggles().addAll(frenchButton, moroccanButton);
 
         // Toggle language buttons.
         // French.
@@ -72,42 +72,42 @@ public class LanguageLearner extends Application {
             layout.setCenter(inputView.getView());
             practiceButton.setText("Practice");
         });
-        // German.
-        germanButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        // Moroccan
+        moroccanButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
             try {
-                dictionary.toGerman();
+                dictionary.toMoroccan();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
             if (newValue) {
-                germanButton.setStyle(
+                moroccanButton.setStyle(
                         "-fx-background-color: green;" +
                                 "-fx-text-fill: white");
             } else {
-                germanButton.setStyle(null);
+                moroccanButton.setStyle(null);
             }
             scoringSystem.clearScore();
             layout.setCenter(inputView.getView());
             practiceButton.setText("Practice");
         });
         // Chinese.
-        chineseButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                dictionary.toChinese();
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            if (newValue) {
-                chineseButton.setStyle(
-                        "-fx-background-color: green;" +
-                                "-fx-text-fill: white");
-            } else {
-                chineseButton.setStyle(null);
-            }
-            scoringSystem.clearScore();
-            layout.setCenter(inputView.getView());
-            practiceButton.setText("Practice");
-        });
+//        chineseButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+//            try {
+//                dictionary.toChinese();
+//            } catch (FileNotFoundException e) {
+//                throw new RuntimeException(e);
+//            }
+//            if (newValue) {
+//                chineseButton.setStyle(
+//                        "-fx-background-color: green;" +
+//                                "-fx-text-fill: white");
+//            } else {
+//                chineseButton.setStyle(null);
+//            }
+//            scoringSystem.clearScore();
+//            layout.setCenter(inputView.getView());
+//            practiceButton.setText("Practice");
+//        });
 
         // Add error message.
         Label errorMessage = new Label();
@@ -115,7 +115,7 @@ public class LanguageLearner extends Application {
         // Add the buttons to the menu.
         menu.getChildren().addAll(enterButton, practiceButton, errorMessage);
         layout.setTop(menu);
-        languageMenu.getChildren().addAll(frenchButton, germanButton, chineseButton);
+        languageMenu.getChildren().addAll(frenchButton, moroccanButton);
         layout.setBottom(languageMenu);
 
         // Connect the subviews with the buttons. Clicking menu buttons changes the subview.

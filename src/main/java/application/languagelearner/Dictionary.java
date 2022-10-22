@@ -1,8 +1,5 @@
 package application.languagelearner;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -65,7 +62,7 @@ public class Dictionary {
                 if (line.isEmpty()) {
                     continue;
                 }
-                String parts[] = line.split(",");
+                String[] parts = line.split(",");
                 String word = parts[0].trim();
                 String translation = parts[1].trim();
                 add(word, translation);
@@ -89,13 +86,8 @@ public class Dictionary {
         read();
     }
 
-    public void toGerman() throws FileNotFoundException {
-        this.file = new File("German.txt");
-        read();
-    }
-
-    public void toChinese() throws FileNotFoundException {
-        this.file = new File("Chinese.txt");
+    public void toMoroccan() throws FileNotFoundException {
+        this.file = new File("Moroccan.txt");
         read();
     }
 
