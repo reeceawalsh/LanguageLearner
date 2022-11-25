@@ -82,7 +82,7 @@ public class Dictionary {
     }
 
     public void toFrench() throws FileNotFoundException {
-        this.file = new File("French.txt");
+        this.file = new File("French2.txt");
         read();
     }
 

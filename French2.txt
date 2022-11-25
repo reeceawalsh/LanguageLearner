@@ -1,0 +1,105 @@
+Organiser, to organise
+Travailler, to work
+Regarder, to look
+Etudier, to study
+Penser, to think
+Rester, to stay
+Monter, to climb
+Tomber, to fall
+Visiter, to visit
+D'ou venez-vous?, where are you from?
+Vous travaillez, do you work?
+Se reveiller, to wake up
+Se fiancer, to get engaged
+Se demander, to wonder
+Se coucher, to go to bed
+S'appeler, to be called
+Se depecher, to hurry up
+Se souvenir, to remember
+Se promener, to go for a walk
+Se laver, to get washed
+Se debrasser de, to get rid of
+Se perde, to get lost
+Se brosser, to brush
+S'asseoir, to sit down
+Se raser, to shave
+S'endormir, to fall asleep
+Se nettoyer, to get clean
+Se coiffer, to do your hair
+Se faire couper les cheveux, to get a hair cut
+S'habiller, to get dressed
+S'ennuyer, to get bored
+S'installer, to sit down
+Se reposer, to rest
+Se doucher, to have a shower
+Je me reveille, I wake up
+Je me leve, I get up
+Je me lave, I wash myself
+Je prends une douche, I take a shower
+Je prends un bain, I take a bath
+Je m'habille, I get dressed
+Je me coiffe, I do my hair
+Je prends mon petit dejeuner, I have my breakfast
+Je me brosse les dents, I brush my teeth
+Je quitte la maison, I leave the house
+Je prends le bus, I take the bus
+J'arrive a l'universite, I arrive at university
+J'ai cours, I have a class
+Je dejeune, I have lunch
+Je rentre a la maison, I return to my house
+Je goute, I eat a snack
+Je fais mes devoirs, I do my homework
+Je dine, I have dinner
+Je regarde la tele, I watch television
+Je me deshabille, I undress
+Je lis, I read
+Je me couche, I go to bed
+Je dors, I sleep
+Tu me reveille, I wake up
+Tu te reveilles, you wake up
+Il se reveille, he wakes up
+Elle se reveille, she wakes up
+On se reveille, we wake up
+Nous nous reveillons, we wake up
+Vous vous reveillez, you wake up
+Ils se reveillent, they wake up
+Elles se reveillent, they wake up
+Je ne me reveille pas, I don't wake up
+Tu ne te reveilles pas, you don't wake up
+Il ne se reveille pas, he doesn't wake up
+Elle ne se reveille pas, she doesn't wake up
+On ne se reveille pas, we don't wake up
+Nous ne nous reveillons pas, we don't wake up
+Vous new vous reveillez pas, you don't wake up
+Ils ne se reveillent pas, they don't wake up
+Elles ne se reveillent, they don't wake up
+Un fils, son
+une fille, daughter
+une belle-fille, step daughter
+l'oncle, uncle
+la tante, aunt
+un cousin, cousin
+un demi-frere, step brother
+une demi-soeur, step sister
+Le soir, the evening
+Ensuite, next
+Puis, then
+Pendant que: while
+Pendant, during
+Les actualites, the news
+Agir, to act
+Reagir, react
+Batir, to build
+Grandir, to grow up
+Grand, tall
+Agrandir, to make bigger
+Atterrir, to land
+La terre, ground
+Avertir, to warn
+Applaudir, to clap
+Reussir, to succeed
+Rougir, to blush
+Reflechir, to reflect
+Reunir, to reunite
+Remplir, to fill
+Grossir, to gain weight
